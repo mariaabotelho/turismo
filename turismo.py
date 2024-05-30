@@ -17,14 +17,18 @@ def set_style():
             font-family: 'Times New Roman', sans-serif;
         }
         /* Estilizando as opções do multiselect */
-        .st-multi-select label {
-            color: green !important;
-        }
-        .st-multi-select div[role='listbox'] {
+        .stMultiSelect .css-1l6x6by, .stMultiSelect .css-1n543e5 {
             background-color: green !important;
             color: white !important;
         }
-        .st-multi-select div[role='option'] {
+        .stMultiSelect .css-1dimb5e, .stMultiSelect .css-1ine56y, .stMultiSelect .css-1wa3eu0 {
+            color: green !important;
+        }
+        .stMultiSelect div[role='listbox'] {
+            background-color: green !important;
+            color: white !important;
+        }
+        .stMultiSelect div[role='option'] {
             background-color: green !important;
             color: white !important;
         }
