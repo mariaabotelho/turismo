@@ -22,10 +22,10 @@ def set_style():
     )
 
 # Função para exibir a imagem e texto no container
-def display_image_with_text(image_path, caption, header_text, image_width=600, caption_width=500):
+def display_image_with_text(image_path, caption, header_text, image_width=600):
     container = st.container()
     with container:
-        col_img, col_txt = st.columns([1, 2])
+        col_img, col_txt = container.columns([1, 2])
         col_img.image(image_path, caption=caption, width=image_width)
         col_txt.header(header_text)
 
