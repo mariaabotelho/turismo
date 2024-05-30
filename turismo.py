@@ -14,7 +14,7 @@ def set_style():
             background-color: #ffffff;
         }
         h1, h2, h3, h4, h5, p, div, span {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Times New Roman', sans-serif;
         }
         </style>
         """,
