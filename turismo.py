@@ -14,23 +14,7 @@ def set_style():
             background-color: #ffffff;
         }
         h1, h2, h3, h4, h5, p, div, span {
-            font-family: 'Times New Roman', sans-serif;
-        }
-        /* Estilizando as opções do multiselect */
-        .stMultiSelect .css-1l6x6by, .stMultiSelect .css-1n543e5 {
-            background-color: green !important;
-            color: white !important;
-        }
-        .stMultiSelect .css-1dimb5e, .stMultiSelect .css-1ine56y, .stMultiSelect .css-1wa3eu0 {
-            color: green !important;
-        }
-        .stMultiSelect div[role='listbox'] {
-            background-color: green !important;
-            color: white !important;
-        }
-        .stMultiSelect div[role='option'] {
-            background-color: green !important;
-            color: white !important;
+            font-family: 'Arial', sans-serif;
         }
         </style>
         """,
@@ -44,7 +28,7 @@ def main_page():
     with st.container():
         st.image("madonna.jpg", caption="Madonna", width=500)
     
-    st.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
+    st.write("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
     
     with st.form(key='form1'):
         answer = st.radio("Você acha que a Prefeitura do Rio e o governo deveriam ter investido essa quantia de dinheiro no show?", ("Sim", "Não"))
@@ -98,10 +82,10 @@ def second_page():
             col1, col2 = st.columns([3, 1])
             with col1:
                 st.caption(
-                    "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
+                    "Vale destacar que nossos dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
                 )
             with col2:
-                st.image("carinhas.jpg", width=120)
+                st.image("carinha.jpg", width=70)
 
         # Gráficos interativos com multiselect
         options = st.multiselect(
