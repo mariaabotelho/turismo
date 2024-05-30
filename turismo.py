@@ -2,8 +2,25 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Função para definir o estilo do site
+def set_style():
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background-color: #f0f8ff;
+        }
+        .css-1d391kg {
+            background-color: #ffebcd;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Função para a página principal
 def main_page():
+    set_style()
     st.title("Show da Madonna no Rio de Janeiro")
     with st.container():
         st.image("madonna.jpg", caption="Madonna", width=600)
@@ -20,6 +37,7 @@ def main_page():
 
 # Função para a segunda página
 def second_page():
+    set_style()
     with st.container():
         st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
     st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
@@ -41,23 +59,24 @@ def second_page():
         st.write(f"Valor real: {real_value} milhões de reais")
         st.write(f"Sua estimativa: {estimativa} milhões de reais")
 
-        # Gráfico de proximidade da estimativa com o valor real
+        # Gráfico de proximidade da estimativa com o valor real em linhas
         fig, ax = plt.subplots(figsize=(6, 4))
-        ax.barh(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color=['blue', 'green'])
-        ax.set_xlim(0, max(estimativa, real_value) * 1.1)
-        ax.set_xlabel('Milhões de reais')
+        ax.plot(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color='green', marker='o')
+        ax.fill_between(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color='yellow', alpha=0.3)
+        ax.set_ylim(0, max(estimativa, real_value) * 1.1)
+        ax.set_ylabel('Milhões de reais')
         ax.set_title('Proximidade da Estimativa com o Valor Real')
         st.pyplot(fig)
         
         # Texto com container e imagens
         with st.container():
+            st.subheader(
+                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla .Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+            )
             col1, col2 = st.columns([3, 1])
             with col1:
-                st.subheader(
-                    "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos?"
-                )
                 st.caption(
-                    "Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+                    "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
                 )
             with col2:
                 st.image("carinha.jpg", width=70)
