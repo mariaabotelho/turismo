@@ -85,7 +85,7 @@ def second_page():
                     "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
                 )
             with col2:
-                st.image("carinha.jpg", width=70)
+                st.image("carinhas.jpg", width=100)
 
         # Gráficos interativos com multiselect
         options = st.multiselect(
