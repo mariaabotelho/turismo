@@ -26,7 +26,7 @@ def main_page():
     set_style()
     st.title("Show da Madonna no Rio de Janeiro")
     with st.container():
-        st.image("madonnaof.jpg", caption="Madonna", width=500)
+        st.image("madonnaof.jpg", caption="Madonna", width=620)
     
     st.write("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna.")
     
