@@ -28,7 +28,7 @@ def main_page():
     with st.container():
         st.image("madonna.jpg", caption="Madonna", width=500)
     
-    st.write("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
+    st.write("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna.")
     
     with st.form(key='form1'):
         answer = st.radio("Você acha que a Prefeitura do Rio e o governo deveriam ter investido essa quantia de dinheiro no show?", ("Sim", "Não"))
