@@ -13,6 +13,9 @@ def set_style():
         .css-1d391kg {
             background-color: #ffffff;
         }
+        h1, h2, h3, h4, h5, p, div, span {
+            font-family: 'Arial', sans-serif;
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -40,12 +43,12 @@ def second_page():
     set_style()
     with st.container():
         st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
-    st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
     
-    st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
-    
-    retorno_est = st.number_input("Insira sua estimativa (em milhões de reais)", min_value=0, step=1)
-    confirmar_button = st.button("Confirmar")
+    with st.container():
+        st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
+        st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
+        retorno_est = st.number_input("Insira sua estimativa (em milhões de reais)", min_value=0, step=1)
+        confirmar_button = st.button("Confirmar")
     
     if confirmar_button:
         st.session_state.retorno_est = retorno_est
@@ -55,9 +58,12 @@ def second_page():
         real_value = 300  # Valor real do retorno financeiro
         estimativa = st.session_state.retorno_est
 
-        st.write("Sua estimativa comparada ao valor real:")
-        st.write(f"Valor real: {real_value} milhões de reais")
-        st.write(f"Sua estimativa: {estimativa} milhões de reais")
+        # Exibir comparações com st.metric
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric(label="Valor real", value=f"{real_value} milhões de reais")
+        with col2:
+            st.metric(label="Sua estimativa", value=f"{estimativa} milhões de reais")
 
         # Gráfico de proximidade da estimativa com o valor real em linhas
         fig, ax = plt.subplots(figsize=(6, 4))
@@ -111,4 +117,3 @@ if 'answer' not in st.session_state:
     main_page()
 else:
     second_page()
-
