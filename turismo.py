@@ -24,9 +24,9 @@ def set_style():
 # Função para a página principal
 def main_page():
     set_style()
-    st.title("Show da Madonna no Rio de Janeiro")
+    st.header("Show da Madonna no Rio de Janeiro")
     with st.container():
-        st.image("madonnaof.jpg", caption="Madonna", width=620)
+        st.image("madonnaof.jpg", caption="Poster de divulgação do show da Madonna no Rio de Janeiro.", width=620)
     
     st.write("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna.")
     
@@ -42,10 +42,10 @@ def main_page():
 def second_page():
     set_style()
     with st.container():
-        st.image("pessoas.jpg", caption="Show da Madonna reuniu 1,6 milhões de pessoas em Copacabana, dos quais cerca de 150 mil eram turistas.", width=600)
+        st.image("pessoas.jpg", caption="Foto do show da Madonna no Rio de Janeiro.", width=600)
     
     with st.container():
-        st.header("Show da Madonna reuniu 1,6 milhões de pessoas em Copacabana.")
+        st.header("Show da Madonna reuniu 1,6 milhões de pessoas em Copacabana, dos quais cerca de 150 mil eram turistas.")
         st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
         retorno_est = st.number_input("Insira sua estimativa (em milhões de reais)", min_value=0, step=1)
         confirmar_button = st.button("Confirmar")
