@@ -16,6 +16,24 @@ def set_style():
         h1, h2, h3, h4, h5, p, div, span {
             font-family: 'Times New Roman', sans-serif;
         }
+        .css-1wa3eu0-placeholder {
+            color: green !important;
+        }
+        .css-1l6x6by {
+            background-color: yellow !important;
+        }
+        .css-1uccc91 {
+            background-color: yellow !important;
+            color: black !important;
+        }
+        .css-1n543e5 {
+            background-color: yellow !important;
+            color: black !important;
+        }
+        .css-1f26u4m {
+            background-color: green !important;
+            color: white !important;
+        }
         </style>
         """,
         unsafe_allow_html=True
