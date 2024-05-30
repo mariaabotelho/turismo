@@ -8,10 +8,13 @@ def set_style():
         """
         <style>
         .stApp {
-            background-color: #f0f8ff;
+            background-color: #ffffff;
         }
         .css-1d391kg {
-            background-color: #ffebcd;
+            background-color: #f0f8ff;
+        }
+        h1, h2, h3, h4, h5, h6, p, div, span {
+            font-family: 'Arial', sans-serif;
         }
         </style>
         """,
@@ -65,49 +68,4 @@ def second_page():
         ax.fill_between(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color='yellow', alpha=0.3)
         ax.set_ylim(0, max(estimativa, real_value) * 1.1)
         ax.set_ylabel('Milhões de reais')
-        ax.set_title('Proximidade da Estimativa com o Valor Real')
-        st.pyplot(fig)
-        
-        # Texto com container e imagens
-        with st.container():
-            st.subheader(
-                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla .Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
-            )
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                st.caption(
-                    "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
-                )
-            with col2:
-                st.image("carinha.jpg", width=100)
-
-        # Gráficos interativos com multiselect
-        options = st.multiselect(
-            "Escolha os gráficos que deseja visualizar:",
-            ["Número de Turistas no Brasil", "Despesas com Turismo no Brasil", "Retorno Financeiro do Turismo no Brasil"]
-        )
-
-        if "Número de Turistas no Brasil" in options:
-            turistas_df = pd.read_excel("turistas_brasil_2019_2024.xlsx")
-            turistas_df['Ano'] = turistas_df['Ano'].astype(int)
-            st.bar_chart(turistas_df.set_index("Ano")["Turistas"])
-
-        if "Despesas com Turismo no Brasil" in options:
-            despesas_df = pd.read_excel("despesas_pagas_turismo_2020_2024.xlsx")
-            despesas_df['Ano'] = despesas_df['Ano'].astype(int)
-            st.bar_chart(despesas_df.set_index("Ano")["Despesas Pagas (BRL)"])
-
-        if "Retorno Financeiro do Turismo no Brasil" in options:
-            receita_df = pd.read_excel("receita_turismo_2019_2024.xlsx")
-            receita_df['Ano'] = receita_df['Ano'].astype(int)
-            st.bar_chart(receita_df.set_index("Ano")["Receita (BRL)"])
-
-        if st.button("Início 🏠"):
-            st.session_state.clear()
-            st.experimental_rerun()
-
-# Gerenciar navegação entre páginas
-if 'answer' not in st.session_state:
-    main_page()
-else:
-    second_page()
+       
