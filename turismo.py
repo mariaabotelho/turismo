@@ -24,8 +24,7 @@ def set_style():
 # Função para a página principal
 def main_page():
     set_style()
-    st.title("Show da Madonna no 
-    Rio de Janeiro")
+    st.title("Show da Madonna no Rio de Janeiro")
     with st.container():
         st.image("madonna.jpg", caption="Madonna", width=500)
     
