@@ -2,102 +2,81 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Função para carregar e exibir a primeira página
-def primeira_pagina():
+# Função para a página principal
+def main_page():
     st.title("Show da Madonna no Rio de Janeiro")
-    st.image("madonna.jpg", caption="Madonna")
+    st.image("madonna.jpg", caption="Madonna", width=400)
+    
     st.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
-
+    
     with st.form(key='form1'):
-        resposta = st.radio(
-            "Você acha que a Prefeitura do Rio e o governo deveriam ter investido essa quantia de dinheiro no show?",
-            ("Sim", "Não")
-        )
+        answer = st.radio("Você acha que a Prefeitura do Rio e o governo deveriam ter investido essa quantia de dinheiro no show?", ("Sim", "Não"))
         submit_button = st.form_submit_button(label='Confirmar')
-
+    
     if submit_button:
-        st.session_state.resposta1 = resposta
-        st.session_state.pagina = 'segunda'
+        st.session_state.answer = answer
+        st.experimental_rerun()
 
-# Função para carregar e exibir a segunda página
-def segunda_pagina():
-    st.title("Impacto Econômico do Show da Madonna")
-    st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
+# Função para a segunda página
+def second_page():
+    st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=400)
     st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
     
-    valor_real = 300  # Valor real em milhões
-    with st.form(key='form2'):
-        estimativa = st.number_input(
-            "Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro (em milhões de reais)?",
-            min_value=0, max_value=1000, step=1
+    st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
+    
+    retorno_est = st.number_input("Insira sua estimativa (em milhões de reais)", min_value=0, step=1)
+    confirmar_button = st.button("Confirmar")
+    
+    if confirmar_button:
+        st.session_state.retorno_est = retorno_est
+        st.experimental_rerun()
+    
+    if 'retorno_est' in st.session_state:
+        real_value = 300  # Valor real do retorno financeiro
+        estimativas = [st.session_state.retorno_est]  # Lista para armazenar estimativas
+        
+        # Gráfico de estimativas vs valor real
+        st.write("Sua estimativa comparada ao valor real:")
+        st.write(f"Valor real: {real_value} milhões de reais")
+        st.write(f"Sua estimativa: {estimativas[0]} milhões de reais")
+        
+        # Texto com container e imagens
+        with st.container():
+            st.subheader(
+                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos?"
+            )
+            st.caption(
+                "Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+            )
+            st.image("carinha.jpg", width=70)
+
+        # Gráficos interativos com multiselect
+        options = st.multiselect(
+            "Escolha os gráficos que deseja visualizar:",
+            ["Número de Turistas no Brasil", "Despesas com Turismo no Brasil", "Retorno Financeiro do Turismo no Brasil"]
         )
-        submit_button = st.form_submit_button(label='Confirmar')
 
-    if submit_button:
-        st.session_state.estimativa = estimativa
-        st.session_state.pagina = 'terceira'
-        gerar_graficos(valor_real, estimativa)
+        if "Número de Turistas no Brasil" in options:
+            turistas_df = pd.read_excel("turistas_brasil_2019_2024.xlsx")
+            turistas_df['Ano'] = turistas_df['Ano'].astype(int)
+            st.bar_chart(turistas_df.set_index("Ano")["Turistas"])
 
-# Função para gerar os gráficos na segunda página
-def gerar_graficos(valor_real, estimativa):
-    fig, ax = plt.subplots(1, 2, figsize=(12, 5))
+        if "Despesas com Turismo no Brasil" in options:
+            despesas_df = pd.read_excel("despesas_pagas_turismo_2020_2024.xlsx")
+            despesas_df['Ano'] = despesas_df['Ano'].astype(int)
+            st.bar_chart(despesas_df.set_index("Ano")["Despesas Pagas (BRL)"])
 
-    # Gráfico de dispersão
-    ax[0].scatter(valor_real, valor_real, color='green', label='Valor Real')
-    ax[0].scatter(estimativa, estimativa, color='red', label='Sua Estimativa')
-    ax[0].set_title('Dispersão das Estimativas')
-    ax[0].set_xlabel('Estimativas (milhões)')
-    ax[0].set_ylabel('Valor')
-    ax[0].legend()
+        if "Retorno Financeiro do Turismo no Brasil" in options:
+            receita_df = pd.read_excel("receita_turismo_2019_2024.xlsx")
+            receita_df['Ano'] = receita_df['Ano'].astype(int)
+            st.bar_chart(receita_df.set_index("Ano")["Receita (BRL)"])
 
-    # Gráfico de histograma
-    ax[1].hist([valor_real, estimativa], bins=10, color=['green', 'red'], alpha=0.7, label=['Valor Real', 'Sua Estimativa'])
-    ax[1].set_title('Distribuição das Estimativas')
-    ax[1].set_xlabel('Estimativas (milhões)')
-    ax[1].set_ylabel('Frequência')
-    ax[1].legend()
+        if st.button("Início 🏠"):
+            st.session_state.clear()
+            st.experimental_rerun()
 
-    st.pyplot(fig)
-
-    with st.container():
-        st.header("Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos?")
-        col1, col2 = st.columns([2, 5])
-        col1.header("Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil")
-        col2.image("carinha.jpg", width=70)
-
-    opcoes_graficos()
-
-# Função para carregar e exibir os gráficos baseados na escolha do usuário
-def opcoes_graficos():
-    opcoes = st.multiselect(
-        "Escolha o gráfico que você deseja ver:",
-        ["Número de Turistas no Brasil", "Despesas com Turismo no Brasil", "Retorno Financeiro do Turismo no Brasil"]
-    )
-
-    if "Número de Turistas no Brasil" in opcoes:
-        df_turistas = pd.read_excel('previsao_turistas_1989_2024.xlsx')
-        st.line_chart(df_turistas.set_index('Ano'))
-
-    if "Despesas com Turismo no Brasil" in opcoes:
-        df_despesas = pd.read_excel('despesas_pagas_turismo_2020_2024.xlsx')
-        st.line_chart(df_despesas.set_index('Ano'))
-
-    if "Retorno Financeiro do Turismo no Brasil" in opcoes:
-        df_receita = pd.read_excel('receita_turismo_2019_2024.xlsx')
-        st.line_chart(df_receita.set_index('Ano'))
-
-    st.button("Início", on_click=inicio)
-
-# Função para retornar à primeira página
-def inicio():
-    st.session_state.pagina = 'primeira'
-
-# Configuração inicial do app
-if 'pagina' not in st.session_state:
-    st.session_state.pagina = 'primeira'
-
-# Controle de navegação entre páginas
-if st.session_state.pagina == 'primeira':
-    primeira_pagina()
-elif st.session_state.pagina == 'segunda':
-    segunda_pagina()
+# Gerenciar navegação entre páginas
+if 'answer' not in st.session_state:
+    main_page()
+else:
+    second_page()
