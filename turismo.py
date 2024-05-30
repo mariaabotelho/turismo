@@ -13,7 +13,7 @@ def set_style():
         .css-1d391kg {
             background-color: #ffffff;
         }
-        h1, h2, h3, h4, h5, h6, p, div, span {
+        h1, h2, h3, h4, h5, p, div, span {
             font-family: 'Arial', sans-serif;
         }
         </style>
@@ -44,8 +44,11 @@ def second_page():
     with st.container():
         st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
     
-    with st.container():
+    container = st.container()
+    col1, col2 = container.columns([1, 3])
+    with col1:
         st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
+    with col2:
         st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
         retorno_est = st.number_input("Insira sua estimativa (em milhões de reais)", min_value=0, step=1)
         confirmar_button = st.button("Confirmar")
