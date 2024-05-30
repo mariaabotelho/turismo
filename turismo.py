@@ -26,7 +26,7 @@ def main_page():
     set_style()
     st.title("Show da Madonna no Rio de Janeiro")
     with st.container():
-        st.image("madonna.jpg", caption="Madonna", width=600)
+        st.image("madonna.jpg", caption="Madonna", width=500)
     
     st.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
     
@@ -42,7 +42,7 @@ def main_page():
 def second_page():
     set_style()
     with st.container():
-        st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
+        st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=600)
     
     with st.container():
         st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
