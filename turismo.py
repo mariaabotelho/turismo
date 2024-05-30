@@ -24,11 +24,11 @@ def set_style():
 # Função para a página principal
 def main_page():
     set_style()
-    st.title("Show da Madonna no Rio de Janeiro")
-    with st.container():
-        st.image("madonna.jpg", caption="Madonna", width=600)
-    
-    st.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
+    container = st.container()
+    with container:
+        col_img, col_txt = st.columns([1, 2])
+        col_img.image("madonna.jpg", caption="Madonna", width=600)
+        col_txt.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
     
     with st.form(key='form1'):
         answer = st.radio("Você acha que a Prefeitura do Rio e o governo deveriam ter investido essa quantia de dinheiro no show?", ("Sim", "Não"))
@@ -41,9 +41,11 @@ def main_page():
 # Função para a segunda página
 def second_page():
     set_style()
-    with st.container():
-        st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
-    st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
+    container = st.container()
+    with container:
+        col_img, col_txt = st.columns([1, 2])
+        col_img.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
+        col_txt.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
     
     st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
     
@@ -72,17 +74,18 @@ def second_page():
         st.pyplot(fig)
         
         # Texto com container e imagens
-        with st.container():
-            st.subheader(
-                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla .Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
-            )
+        container = st.container()
+        with container:
             col1, col2 = st.columns([3, 1])
             with col1:
-                st.caption(
-                    "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
+                st.subheader(
+                    "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
                 )
             with col2:
                 st.image("carinha.jpg", width=100)
+            st.caption(
+                "Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos"
+            )
 
         # Gráficos interativos com multiselect
         options = st.multiselect(
