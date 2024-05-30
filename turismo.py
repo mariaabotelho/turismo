@@ -16,21 +16,15 @@ def set_style():
         h1, h2, h3, h4, h5, p, div, span {
             font-family: 'Times New Roman', sans-serif;
         }
-        .css-1wa3eu0-placeholder {
+        /* Estilizando as opções do multiselect */
+        .st-multi-select label {
             color: green !important;
         }
-        .css-1l6x6by {
-            background-color: yellow !important;
+        .st-multi-select div[role='listbox'] {
+            background-color: green !important;
+            color: white !important;
         }
-        .css-1uccc91 {
-            background-color: yellow !important;
-            color: black !important;
-        }
-        .css-1n543e5 {
-            background-color: yellow !important;
-            color: black !important;
-        }
-        .css-1f26u4m {
+        .st-multi-select div[role='option'] {
             background-color: green !important;
             color: white !important;
         }
