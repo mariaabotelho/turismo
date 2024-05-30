@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 # Função para a página principal
 def main_page():
     st.title("Show da Madonna no Rio de Janeiro")
-    st.image("madonna.jpg", caption="Madonna", width=400)
+    with st.container():
+        st.image("madonna.jpg", caption="Madonna", width=600)
     
     st.header("A Prefeitura do Rio e o governo investiram R$ 10 milhões cada no show da Madonna")
     
@@ -19,7 +20,8 @@ def main_page():
 
 # Função para a segunda página
 def second_page():
-    st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=400)
+    with st.container():
+        st.image("pessoas.jpg", caption="Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.", width=500)
     st.header("Show da Madonna reúne 1,6 milhões de pessoas em Copacabana.")
     
     st.write("Quanto você acha que o show da Madonna trouxe de retorno financeiro para o Rio de Janeiro?")
@@ -33,22 +35,32 @@ def second_page():
     
     if 'retorno_est' in st.session_state:
         real_value = 300  # Valor real do retorno financeiro
-        estimativas = [st.session_state.retorno_est]  # Lista para armazenar estimativas
-        
-        # Gráfico de estimativas vs valor real
+        estimativa = st.session_state.retorno_est
+
         st.write("Sua estimativa comparada ao valor real:")
         st.write(f"Valor real: {real_value} milhões de reais")
-        st.write(f"Sua estimativa: {estimativas[0]} milhões de reais")
+        st.write(f"Sua estimativa: {estimativa} milhões de reais")
+
+        # Gráfico de proximidade da estimativa com o valor real
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.barh(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color=['blue', 'green'])
+        ax.set_xlim(0, max(estimativa, real_value) * 1.1)
+        ax.set_xlabel('Milhões de reais')
+        ax.set_title('Proximidade da Estimativa com o Valor Real')
+        st.pyplot(fig)
         
         # Texto com container e imagens
         with st.container():
-            st.subheader(
-                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos?"
-            )
-            st.caption(
-                "Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
-            )
-            st.image("carinha.jpg", width=70)
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.subheader(
+                    "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Vale destacar que os dados de 2024 são estimativas feitas com algoritmos de previsão, como o ARIMA, baseados em dados históricos?"
+                )
+                st.caption(
+                    "Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+                )
+            with col2:
+                st.image("carinha.jpg", width=70)
 
         # Gráficos interativos com multiselect
         options = st.multiselect(
