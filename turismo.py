@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Função para definir o estilo do site com uma imagem de fundo
+#alguns detalhes de design
 def set_style():
     st.markdown(
         """
@@ -38,7 +38,7 @@ def set_style():
         unsafe_allow_html=True
     )
 
-# Função para a página principal
+# priemira página
 def main_page():
     set_style()
     st.header("Show da Madonna no Rio de Janeiro")
@@ -55,7 +55,7 @@ def main_page():
         st.session_state.answer = answer
         st.experimental_rerun()
 
-# Função para a segunda página
+# segunda página
 def second_page():
     set_style()
     with st.container():
