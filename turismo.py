@@ -8,7 +8,7 @@ def set_style():
         """
         <style>
         .stApp {
-            background: url('https://raw.githubusercontent.com/mariaabotelho/turismo/main/fundo4.jpeg') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/mariaabotelho/turismo/main/fundo5.jpeg') no-repeat center center fixed;
             background-size: cover;
         }
         .css-1d391kg {
