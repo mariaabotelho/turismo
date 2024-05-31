@@ -2,19 +2,36 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Função para definir o estilo do site
+# Função para definir o estilo do site com uma imagem de fundo
 def set_style():
     st.markdown(
         """
         <style>
         .stApp {
-            background-color: #ffffff;
+            background: url('https://raw.githubusercontent.com/mariaabotelho/turismo/main/fundobr.jpeg') no-repeat center center fixed;
+            background-size: cover;
         }
         .css-1d391kg {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
         }
         h1, h2, h3, h4, h5, p, div, span {
             font-family: 'Times New Roman', sans-serif;
+        }
+        /* Estilizando as opções do multiselect */
+        .stMultiSelect .css-1l6x6by, .stMultiSelect .css-1n543e5 {
+            background-color: green !important;
+            color: white !important;
+        }
+        .stMultiSelect .css-1dimb5e, .stMultiSelect .css-1ine56y, .stMultiSelect .css-1wa3eu0 {
+            color: green !important;
+        }
+        .stMultiSelect div[role='listbox'] {
+            background-color: green !important;
+            color: white !important;
+        }
+        .stMultiSelect div[role='option'] {
+            background-color: green !important;
+            color: white !important;
         }
         </style>
         """,
