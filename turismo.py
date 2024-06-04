@@ -129,7 +129,7 @@ def second_page():
             st.session_state.clear()
             st.experimental_rerun()
 
-# navegação entre as páginas
+# navegação entr as páginas
 if 'answer' not in st.session_state:
     main_page()
 else:
