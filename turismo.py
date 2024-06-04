@@ -75,14 +75,14 @@ def second_page():
         real_value = 300  # Valor real do retorno financeiro
         estimativa = st.session_state.retorno_est
 
-        # Exibir comparações com st.metric
+        # comparações com st.metric
         col1, col2 = st.columns(2)
         with col1:
             st.metric(label="Valor real", value=f"{real_value} milhões de reais")
         with col2:
             st.metric(label="Sua estimativa", value=f"{estimativa} milhões de reais")
 
-        # Gráfico de proximidade da estimativa com o valor real em linhas
+        # gráfico de proximidade da estimativa com o valor real 
         fig, ax = plt.subplots(figsize=(6, 4))
         ax.plot(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color='green', marker='o')
         ax.fill_between(['Sua Estimativa', 'Valor Real'], [estimativa, real_value], color='yellow', alpha=0.3)
@@ -91,10 +91,10 @@ def second_page():
         ax.set_title('Proximidade da Estimativa com o Valor Real')
         st.pyplot(fig)
         
-        # Texto com container e imagens
+        #container não ta funcionando
         with st.container():
             st.subheader(
-                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas para o Brasil. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla. Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
             )
             col1, col2 = st.columns([3, 1])
             with col1:
@@ -104,7 +104,7 @@ def second_page():
             with col2:
                 st.image("carinhas.jpg", width=120)
 
-        # Gráficos interativos com multiselect
+        # multiselect p gráficos
         options = st.multiselect(
             "Escolha os gráficos que deseja visualizar:",
             ["Número de Turistas no Brasil", "Despesas com Turismo no Brasil", "Retorno Financeiro do Turismo no Brasil"]
@@ -129,7 +129,7 @@ def second_page():
             st.session_state.clear()
             st.experimental_rerun()
 
-# Gerenciar navegação entre páginas
+# navegação entre as páginas
 if 'answer' not in st.session_state:
     main_page()
 else:
