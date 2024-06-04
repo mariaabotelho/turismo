@@ -94,7 +94,7 @@ def second_page():
         #container não ta funcionando
         with st.container():
             st.subheader(
-                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla? Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil"
+                "Acredito que ficou evidente como o turismo é crucial e gera receitas significativas. O show da Madonna, por exemplo, demonstrou claramente o impacto econômico positivo. Você já considerou o quanto o turismo contribui para a economia brasileira de forma mais ampla? Nos gráficos a seguir, você entenderá melhor como o turismo influencia a economia do Brasil!"
             )
             col1, col2 = st.columns([3, 1])
             with col1:
