@@ -53,7 +53,7 @@ def main_page():
     
     if submit_button:
         st.session_state.answer = answer
-        st.experimental_rerun()
+        st.rerun()
 
 # segunda página
 def second_page():
