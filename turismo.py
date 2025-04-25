@@ -69,7 +69,7 @@ def second_page():
     
     if confirmar_button:
         st.session_state.retorno_est = retorno_est
-        st.experimental_rerun()
+        st.rerun()
     
     if 'retorno_est' in st.session_state:
         real_value = 300  # Valor real do retorno financeiro
