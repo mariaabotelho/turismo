@@ -127,7 +127,7 @@ def second_page():
 
         if st.button("Início 🏠"):
             st.session_state.clear()
-            st.experimental_rerun()
+            st.rerun()
 
 # navegação entr as páginas
 if 'answer' not in st.session_state:
